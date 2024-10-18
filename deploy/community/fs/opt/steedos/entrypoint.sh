@@ -118,7 +118,7 @@ init_replica_set() {
     )"
     echo "Enabling Replica Set"
     mongod --dbpath "$MONGO_DB_PATH" --shutdown || true
-    mongod --fork --port 27017 --dbpath "$MONGO_DB_PATH" --logpath "$MONGO_LOG_PATH" --replSet steedos --keyFile "$MONGODB_TMP_KEY_PATH" --bind_ip localhost
+    mongod --fork --port 27017 --dbpath "$MONGO_DB_PATH" --logpath "$MONGO_LOG_PATH" --replSet steedos --keyFile "$MONGODB_TMP_KEY_PATH" --bind_ip 0.0.0.0
     echo "Waiting 10s for MongoDB to start with Replica Set"
     sleep 10
     mongo "$MONGO_URL" --eval 'rs.initiate()'
